@@ -2,4 +2,4 @@
 ```.config/waybar```
 
 ### Visual
-![waybar](/waybar/waybar.png)
+![waybar](https://github.com/EveIsSim/dotfiles/blob/master/.config/waybar/waybar.png)
