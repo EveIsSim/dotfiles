@@ -1,0 +1,121 @@
+//                               __                        
+//                              /\ \                       
+//  __  __  __     __     __  __\ \ \____     __     _ __  
+// /\ \/\ \/\ \  /'__`\  /\ \/\ \\ \ '__`\  /'__`\  /\`'__\
+// \ \ \_/ \_/ \/\ \L\.\_\ \ \_\ \\ \ \L\ \/\ \L\.\_\ \ \/ 
+//  \ \___x___/'\ \__/.\_\\/`____ \\ \_,__/\ \__/.\_\\ \_\ 
+//   \/__//__/   \/__/\/_/ `/___/  \\/___/  \/__/\/_/ \/_/ 
+//                            /\___/                       
+//                            \/__/   
+//
+// https://github.com/Jorgedeveloopzz                     
+
+{
+    "position": "top", 
+    "height": 25, 
+
+    // Choose the order of the modules
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+    "modules-center": ["clock"],
+    "modules-right": ["network", "cpu", "memory", "pulseaudio",  "backlight", "sway/language", "battery", "tray"],
+
+    // Modules configuration
+     "sway/workspaces": {
+         "disable-scroll": true,
+         "format":"{name}: {icon}",
+         "format-icons": {
+             "1": "爵",
+             "2": "",
+             "3": "",
+             "4": "",
+	         "6": "",
+	         "7": "🎵",
+             "urgent": "",
+             "focused": "",
+             "default": ""
+         }
+     },
+
+    "clock": {
+        "format": " {:%a %d/%m/%Y - %T}",
+    	"interval": 1
+    },
+    
+    "network": {
+        "format-wifi": "  ({signalStrength}%)",
+        "format-alt": " {essid}: {ipaddr}/{cidr}",
+        "format-ethernet": " {ifname} {bandwidthUpBits} {bandwidthDownBits}",
+        "format-linked": " (No IP) ",
+        "format-disconnected": "睊",
+        "interval": 1
+    },
+    
+    "cpu": {
+        "format": "{usage}% ",
+        "interval": 1
+    },
+    
+    "memory": {
+        "format": "{percentage}% ",
+        "interval": 1
+    },
+    
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": "ﱝ {icon} {format_source}",
+        "format-muted": "ﱝ",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["奄", "奔", "墳"]
+        },
+        "on-click": "alsamixer"
+    },
+    
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 10
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["","","","","","", "", "", "", "", ""]
+    }, 
+    
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true
+    },
+
+	"sway/language": {
+		"format": "{}  ",
+		"tooltip": true
+	},
+
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": [ "", "","", "", "", "", ""]
+    }
+}
