@@ -19,7 +19,7 @@ shell:
   args:
     - -l
     - -c
-    - tmux new -As alacritty # run new session Alacritty
+    - tmux new -As alacritty # run tmux
 
 #################
 
