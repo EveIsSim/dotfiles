@@ -10,17 +10,20 @@ env:
 # Live config reload (changes require restart)
 live_config_reload: true
 
+window:
+  opacity: 0.8
+
 #################
 
 # You can set "shell.program' to the path of your favorite shell, e.g. '/bin/fish'
 
 shell:
-  # program: /usr/bin/zsh # Linux
-  program: /bin/zsh       # MacOs
+  # program: /usr/bin/zsh  # Linux
+  program: /bin/zsh        # MacOs
   args:
     - -l
     - -c
-    - tmux new -As alacritty # run tmux
+    - tmux new -As alacritty
 
 #################
 
@@ -66,8 +69,8 @@ font:
   normal:
     family: "FiraCode Nerd Font"
       #family: "Noto Emoji"
-    style: "Book"
-  size: 10
+    style: "Retina"
+  size: 11
   glyph_offset:
     x: 0
     y: 1
@@ -76,36 +79,77 @@ font:
   # Specifying '0' will disable scrolling.
   history: 5000
 
-  
-# Colors (Solarized Dark)
 colors:
-  # Default colors
   primary:
-    background: '0x002b36'
-    foreground: '0x839496'
-
-  # Normal colors
+    background: "0x191724"
+    foreground: "0xe0def4"
+  cursor:
+    text: "0xe0def4"
+    cursor: "0x524f67"
+  vi_mode_cursor:
+    text: "0xe0def4"
+    cursor: "0x524f67"
+  line_indicator:
+    foreground: None
+    background: None
+  selection:
+    text: "0xe0def4"
+    background: "0x403d52"
   normal:
-    black:   '0x073642'
-    red:     '0xdc322f'
-    green:   '0x859900'
-    yellow:  '0xb58900'
-    blue:    '0x268bd2'
-    magenta: '0xd33682'
-    cyan:    '0x2aa198'
-    white:   '0xeee8d5'
-
-  # Bright colors
+    black: "0x26233a"
+    red: "0xeb6f92"
+    green: "0x31748f"
+    yellow: "0xf6c177"
+    blue: "0x9ccfd8"
+    magenta: "0xc4a7e7"
+    cyan: "0xebbcba"
+    white: "0xe0def4"
   bright:
-    black:   '0x002b36'
-    red:     '0xcb4b16'
-    green:   '0x586e75'
-    yellow:  '0x657b83'
-    blue:    '0x839496'
-    magenta: '0x6c71c4'
-    cyan:    '0x93a1a1'
-    white:   '0xfdf6e3'
-
+    black: "0x6e6a86"
+    red: "0xeb6f92"
+    green: "0x31748f"
+    yellow: "0xf6c177"
+    blue: "0x9ccfd8"
+    magenta: "0xc4a7e7"
+    cyan: "0xebbcba"
+    white: "0xe0def4"
+  hints:
+    start:
+      foreground: "#908caa"
+      background: "#1f1d2e"
+    end:
+      foreground: "#6e6a86"
+      background: "#1f1d2e"
+  
+## Colors (Solarized Dark)
+#colors:
+#  # Default colors
+#  primary:
+#    background: '0x002b36'
+#    foreground: '0x839496'
+#
+#  # Normal colors
+#  normal:
+#    black:   '0x073642'
+#    red:     '0xdc322f'
+#    green:   '0x859900'
+#    yellow:  '0xb58900'
+#    blue:    '0x268bd2'
+#    magenta: '0xd33682'
+#    cyan:    '0x2aa198'
+#    white:   '0xeee8d5'
+#
+#  # Bright colors
+#  bright:
+#    black:   '0x002b36'
+#    red:     '0xcb4b16'
+#    green:   '0x586e75'
+#    yellow:  '0x657b83'
+#    blue:    '0x839496'
+#    magenta: '0x6c71c4'
+#    cyan:    '0x93a1a1'
+#    white:   '0xfdf6e3'
+#
 ## Other theme
 #colors:
 #  primary:
@@ -157,30 +201,56 @@ colors:
 #    white: "#aeb3bb"
 #
 
+###################### 
+
 ######################
 key_bindings:
     # (Windows, Linux, and BSD only)
     # NB:
     #'Add' key was replaced by 'Plus' and 'Subtract' was replaced by 'NumpadSubtract'.
     #See https://github.com/alacritty/alacritty/releases/download/v0.6.0/alacritty.yml for details.
-  - { key: V,               mods: Control|Shift, action: Paste            }
-  - { key: C,               mods: Control|Shift, action: Copy             }
-  - { key: Insert,          mods: Shift,         action: PasteSelection   }
-    
-  - { key: Key0,            mods: Control,       action: ResetFontSize    }
-  - { key: Equals,          mods: Control,       action: IncreaseFontSize }
-  - { key: Plus,            mods: Control,       action: IncreaseFontSize }
-  - { key: NumpadSubtract,  mods: Control,       action: DecreaseFontSize }
-  - { key: Minus,           mods: Control,       action: DecreaseFontSize }
+  #- { key: V,               mods: Control|Shift, action: Paste            }
+  #- { key: C,               mods: Control|Shift, action: Copy             }
+  #- { key: Insert,          mods: Shift,         action: PasteSelection   }
+  #  
+  #- { key: Key0,            mods: Control,       action: ResetFontSize    }
+  #- { key: Equals,          mods: Control,       action: IncreaseFontSize }
+  #- { key: Plus,            mods: Control,       action: IncreaseFontSize }
+  #- { key: NumpadSubtract,  mods: Control,       action: DecreaseFontSize }
+  #- { key: Minus,           mods: Control,       action: DecreaseFontSize }
 
-  - { key: Paste,                    action: Paste                            }
-  - { key: Copy,                     action: Copy                             }
-  - { key: L,         mods: Control, action: ClearLogNotice                   }
-  - { key: L,         mods: Control, chars: "\x0c"                            }
-  - { key: PageUp,    mods: Shift,   action: ScrollPageUp,   mode: ~Alt       }
-  - { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
-  - { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
-  - { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
+  #- { key: Paste,                    action: Paste                            }
+  #- { key: Copy,                     action: Copy                             }
+  #- { key: L,         mods: Control, action: ClearLogNotice                   }
+  #- { key: L,         mods: Control, chars: "\x0c"                            }
+  #- { key: PageUp,    mods: Shift,   action: ScrollPageUp,   mode: ~Alt       }
+  #- { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
+  #- { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
+  #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
+
+  #============================
+  #============================
+
+  # (macOS only)
+  - { key: K,              mods: Command, mode: ~Vi, chars: "\x0c"            }
+  - { key: Key0,           mods: Command,            action: ResetFontSize    }
+  - { key: Equals,         mods: Command,            action: IncreaseFontSize }
+  - { key: Plus,           mods: Command,            action: IncreaseFontSize }
+  - { key: NumpadAdd,      mods: Command,            action: IncreaseFontSize }
+  - { key: Minus,          mods: Command,            action: DecreaseFontSize }
+  - { key: NumpadSubtract, mods: Command,            action: DecreaseFontSize }
+  - { key: K,              mods: Command,            action: ClearHistory     }
+  - { key: V,              mods: Command,            action: Paste            }
+  - { key: C,              mods: Command,            action: Copy             }
+  - { key: C,              mods: Command, mode: Vi,  action: ClearSelection   }
+  - { key: H,              mods: Command,            action: Hide             }
+  - { key: M,              mods: Command,            action: Minimize         }
+  - { key: Q,              mods: Command,            action: Quit             }
+  - { key: W,              mods: Command,            action: Quit             }
+  - { key: N,              mods: Command,            action: SpawnNewInstance }
+  - { key: F,              mods: Command|Control,    action: ToggleFullscreen }
+  - { key: F,              mods: Command,            action: SearchForward    }
+  - { key: B,              mods: Command,            action: SearchBackward   }
 
 ######################
 
@@ -189,7 +259,8 @@ hints:
    - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
              [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
      hyperlinks: true
-     command: xdg-open
+     #command: xdg-open # Linux
+     command: open      # MacOs
      post_processing: true
      mouse:
        enabled: true
@@ -198,5 +269,4 @@ hints:
        key: U
        mods: Control|Shift
 
-######################
-
+######################  
