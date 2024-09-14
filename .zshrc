@@ -140,6 +140,10 @@ eval "$(starship init zsh)"
 #alias wq='wmctrl -r 'Alacritty' -b toggle,fullscreen'
 #------------------------------------------
 
+#default viasual & editor (for ranger example)
+export VISUAL=nvim
+export EDITOR=nvim
+
 #aliases
 alias ll='ls -lG'
 alias olamarun='ollama run llama3.1'

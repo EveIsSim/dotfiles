@@ -38,7 +38,7 @@ symbol = " "
 symbol = " "
 
 [golang]
-symbol = " "
+symbol = "🐹"
 
 [guix_shell]
 symbol = " "
