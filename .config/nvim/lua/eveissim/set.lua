@@ -70,4 +70,5 @@ vim.opt.wildmenu = true
 -- Load an indent file for the detected file type.
 vim.api.nvim_command('filetype plugin indent on')
 
-
+-- If file was updated by external process. Neovim will update buffer automatically. You need just refresh screen <C-l>
+vim.opt.autoread = true
