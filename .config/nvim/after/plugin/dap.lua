@@ -4,6 +4,42 @@ local dapgo = require("dap-go")
 -- ###### setup Go
 dapgo.setup() -- auto setup debugger Delve
 
+-- ##### setup Csharp
+dap.adapters.coreclr = {
+  type = "executable",
+  command = "/usr/local/netcoredbg",
+  args = { "--interpreter=vscode" }
+}
+
+dap.configurations.cs = {
+    {
+        type = "coreclr",
+        name = "Launch - NetCoreDbg",
+        request = "launch",
+        program = function()
+            -- recurcive searching all DLLs
+            local dlls = vim.fn.glob(vim.fn.getcwd() .. "/**/bin/Debug/net*/*.dll", 0, 1)
+
+            if #dlls == 0 then
+                vim.notify("No DLLs found in the project.", vim.log.levels.ERROR)
+                return nil
+            elseif #dlls == 1 then
+                vim.notify("Selected DLL: " .. dlls[1], vim.log.levels.INFO)
+                return dlls[1]
+            else
+                local dll_list = table.concat(dlls, "\n")
+                local choice = vim.fn.inputlist({"Select DLL:", dll_list})
+                if choice < 1 or choice > #dlls then
+                    vim.notify("Invalid choice. Canceling debug.", vim.log.levels.ERROR)
+                    return nil
+                end
+                return dlls[choice]
+            end
+        end,
+    },
+}
+-- ##### setup Csharp
+
 -- ###### setup dapui
 local dapui = require("dapui")
 dapui.setup()

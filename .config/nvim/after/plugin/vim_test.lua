@@ -2,6 +2,10 @@
 vim.g["test#go#runner"] = "richgo"
 -- ###### setup Go
 
+-- ###### setup Csharp
+vim.g["test#runner_commands"] = { cs = "dotnet test" }
+-- ###### setup Csharp
+
 -- ###### Common
 vim.g["test#strategy"] = "neovim" -- run in dynamic window neovim
 -- vim.g["test#strategy"] = "basic" -- run in a new terminal split below
