@@ -55,4 +55,17 @@ return require('packer').startup(function(use)
       end
   }
 
+  use("vim-test/vim-test") -- run tests
+
+  -- debug
+  use {
+  "mfussenegger/nvim-dap",              -- main plugind for debug
+  "rcarriga/nvim-dap-ui",               -- UI for nvim-dap
+  "nvim-telescope/telescope-dap.nvim",  -- integration nvim-dap with Telescope
+  "theHamsta/nvim-dap-virtual-text",    -- virtual 
+
+  -- GO
+  "leoluz/nvim-dap-go",                 -- Go-adapter for nvim-dap
+  }
+
 end)
