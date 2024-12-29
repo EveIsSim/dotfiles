@@ -5,7 +5,7 @@ local cmp_action = lsp.cmp_action()
 lsp.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
-    lsp.default_keymaps({buffer = bufnr})
+    lsp.default_keymaps({ buffer = bufnr })
 end)
 
 
@@ -16,6 +16,7 @@ require('mason-lspconfig').setup({
         'gopls',
         'omnisharp'
     },
+    automatic_installation = true,
     handlers = {
         lsp.default_setup,
         omnisharp = function()
@@ -32,9 +33,19 @@ require('mason-lspconfig').setup({
     },
 })
 
+-- C#
+require('lspconfig').omnisharp.setup({
+    cmd = { "omnisharp" },
+    enable_editorconfig_support = true,
+    enable_import_completion = true,
+    organize_imports_on_format = true,
+})
+
+-- C# endregion
+
 cmp.setup({
     sources = {
-        {name = 'nvim_lsp'}
+        { name = 'nvim_lsp' }
 
     },
     window = {
@@ -59,7 +70,7 @@ cmp.setup({
 
 
 lsp.on_attach(function(client, bufnr)
-    local opts = {buffer = bufnr, remap = false}
+    local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
@@ -73,10 +84,18 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-l>", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set("n", "<leader>q", function ()
+    vim.keymap.set("n", "<leader>q", function()
         vim.diagnostic.setqflist()
         vim.cmd("copen")
-    end, { noremap = true, silent = true})
+    end, { noremap = true, silent = true })
+
+    -- autoformatting before saving
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.format()
+        end,
+    })
 end)
 
 lsp.setup()
@@ -84,5 +103,3 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true
 })
-
-
