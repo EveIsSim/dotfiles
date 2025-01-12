@@ -64,6 +64,8 @@ return require('packer').startup(function(use)
 
     use("vim-test/vim-test") -- run tests
 
+    use('nvim-neotest/nvim-nio')
+
     -- debug
     use {
         "mfussenegger/nvim-dap",             -- main plugind for debug
