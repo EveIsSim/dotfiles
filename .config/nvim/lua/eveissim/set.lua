@@ -1,4 +1,5 @@
-vim.opt.guicursor = ""
+--vim.opt.guicursor = ""
+vim.opt.guicursor = "n-v-c:block-Cursor,i:ver25-CursorInsert,r:hor20"
 vim.cmd [[
     syntax enable
 ]]

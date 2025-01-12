@@ -1,13 +1,13 @@
 local lsp = require('lsp-zero')
 local cmp = require('cmp')
 local cmp_action = lsp.cmp_action()
+local util = require('lspconfig.util')
 
 lsp.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
     lsp.default_keymaps({ buffer = bufnr })
 end)
-
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
@@ -21,9 +21,15 @@ require('mason-lspconfig').setup({
         lsp.default_setup,
         omnisharp = function()
             require('lspconfig').omnisharp.setup({
+                cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+                capabilities = require('cmp_nvim_lsp').default_capabilities(),
+                root_dir = util.root_pattern('.sln', '.csproj', '.git'),
                 handlers = {
-                    ["textDocument/definition"] = require('omnisharp_extended').handler,
-                }
+                    ['textDocument/definition'] = require('omnisharp_extended').handler,
+                },
+                enable_editorconfig_support = true,
+                enable_import_completion = true,
+                organize_imports_on_format = true,
             })
         end,
         lua_ls = function()
@@ -32,16 +38,6 @@ require('mason-lspconfig').setup({
         end,
     },
 })
-
--- C#
-require('lspconfig').omnisharp.setup({
-    cmd = { "omnisharp" },
-    enable_editorconfig_support = true,
-    enable_import_completion = true,
-    organize_imports_on_format = true,
-})
-
--- C# endregion
 
 cmp.setup({
     sources = {
@@ -67,7 +63,6 @@ cmp.setup({
         })
     })
 })
-
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
