@@ -73,3 +73,9 @@ vim.api.nvim_command('filetype plugin indent on')
 
 -- If file was updated by external process. Neovim will update buffer automatically. You need just refresh screen <C-l>
 vim.opt.autoread = true
+
+vim.api.nvim_create_user_command("ConvertToUnix", function()
+    vim.bo.fileformat = "unix"
+    vim.cmd [[ %s/\r//g ]]
+    vim.cmd("write")
+end, {})

@@ -3,12 +3,33 @@ local dapgo = require("dap-go")
 
 -- ###### setup Go
 dapgo.setup() -- auto setup debugger Delve
+dap.configurations.go = vim.list_extend(dap.configurations.go or {}, {
+    {
+        type = "go",
+        name = "Debug package",
+        request = "launch",
+        program = "${fileDirname}",
+        args = {},
+    },
+})
+--dap.configurations.go = {
+--    {
+--        type = 'go',
+--        name = 'Debug current file (prompt for args)',
+--        request = 'launch',
+--        program = "${file}",
+--        args = function()
+--            local input = vim.fn.input("Args: ")
+--            return vim.fn.split(input, " +")
+--        end,
+--    },
+--}
 
 -- ##### setup Csharp
 dap.adapters.coreclr = {
-  type = "executable",
-  command = "/usr/local/netcoredbg",
-  args = { "--interpreter=vscode" }
+    type = "executable",
+    command = "/usr/local/netcoredbg",
+    args = { "--interpreter=vscode" }
 }
 
 dap.configurations.cs = {
@@ -28,7 +49,7 @@ dap.configurations.cs = {
                 return dlls[1]
             else
                 local dll_list = table.concat(dlls, "\n")
-                local choice = vim.fn.inputlist({"Select DLL:", dll_list})
+                local choice = vim.fn.inputlist({ "Select DLL:", dll_list })
                 if choice < 1 or choice > #dlls then
                     vim.notify("Invalid choice. Canceling debug.", vim.log.levels.ERROR)
                     return nil
@@ -46,13 +67,13 @@ dapui.setup()
 
 -- open/close UI when start/stop debugging
 dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
+    dapui.open()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
+    dapui.close()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
+    dapui.close()
 end
 
 require("nvim-dap-virtual-text").setup()
@@ -66,9 +87,9 @@ vim.api.nvim_set_keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", { nor
 vim.api.nvim_set_keymap("n", "<F11>", ":lua require'dap'.step_into()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>b", ":lua require'dap'.toggle_breakpoint()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+    { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>dr", ":lua require'dap'.repl.open()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>dl", ":lua require'dap'.run_last()<CR>", { noremap = true, silent = true })
 
 -- ###### setup mapping
-

@@ -29,6 +29,8 @@ return require('packer').startup(function(use)
         -- end
     })
 
+    use "EdenEast/nightfox.nvim"
+
     --#endregion Themes
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
