@@ -103,42 +103,19 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+#python
+eval "$(pyenv init --path)"
+eval "$(starship init zsh)"
 
 #rustup 
 source "$HOME/.cargo/env"
 
 #go	
+export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin
 
 #starship 
 eval "$(starship init zsh)"
-
-
-#only Linux 
-#------------------------------------------
-#wayland
-#export QT_QPA_PLATFORM=wayland
-
-#FIREFOX
-#export XDG_SESSION_TYPE=wayland 
-#export XDG_CURRENT_DESKTOP=sway 
-#export MOZ_ENABLE_WAYLAND=1
-#------------------------------------------
-
-#python
-#------------------------------------------
-#export PYENV_ROOT="$HOME/.pyenv"
-#export PATH="$PYENV_ROOT/bin:$PATH"
-#
-#if command -v pyenv 1>/dev/null 2>&1; then
-#  eval "$(pyenv init -)"
-#fi
-
-# XWayland
-#export WLD=/usr
-#
-#alias wq='wmctrl -r 'Alacritty' -b toggle,fullscreen'
-#------------------------------------------
 
 #default viasual & editor (for ranger example)
 export VISUAL=nvim
@@ -146,21 +123,10 @@ export EDITOR=nvim
 
 #aliases
 alias ll='ls -lG'
-alias olamarun='ollama run llama3.1'
 alias vim="nvim"
 alias myip="curl http://ipecho.net/plain; echo"
 
+### Macos
 #homeBrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-
-#curl
-#------------------------------------------
-export PATH="/opt/homebrew/opt/curl/bin:$PATH"
- 
-# For compilers to find curl you may need to set:
-export LDFLAGS="-L/opt/homebrew/opt/curl/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
-#------------------------------------------
-
-
+# export PATH="/opt/homebrew/opt/node@20/bin:$GOPATH/bin:$PATH"
+# eval "$(/opt/homebrew/bin/brew shellenv)"
