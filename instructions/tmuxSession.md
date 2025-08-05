@@ -35,7 +35,7 @@ set -g @continuum-save-interval '5'  # autosave every 5 min
     - restore session: `prefix + Ctrl-r`
 5. If you run tmux via alacritty like me, you can add to `alacrity.toml` next lines:
 ```toml
-[shell]
+[terminal.shell]
 args = ["-l", "-c", "tmux new -As alacritty"]
 program = "/bin/zsh"
 

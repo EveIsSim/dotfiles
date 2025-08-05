@@ -4,6 +4,7 @@
 ### Installation
 * Info - https://www.pgcli.com/install
 * macos - `brew install postgresql`
+* arch - `yay -S pgcli`
 
 
 ### How create fast access to db
