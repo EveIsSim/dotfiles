@@ -1,46 +1,37 @@
 * {
-    	font-family: DejaVuSansMono Nerd Font, Roboto, Helvetica, Arial, sans-serif;
-    	font-size: 13px;
+  all: unset;
+  font-family: "FiraCode Nerd Font", "JetBrainsMono Nerd Font", monospace;
+  font-size: 11px;
+  background: none;
+  color: #e0def4; /* text */
 }
 
 window {
-	background-color: #3B4252;
+  background-color: #191724;
+  border: 2px solid #9ccfd8;
+  border-radius: 8px;
 }
+
 #input {
-	margin: 5px;
-	border-radius: 0px;
-	border: none;
-	background-color: #3B4252;
-	color: white;
+  margin: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background-color: #1f1d2e;
+  color: #e0def4;
 }
 
-#inner-box {
-	background-color: #383C4A;
-}
-
-#outer-box {
-	margin: 2px;
-	padding: 10px;
-	background-color: #383C4A;
-}
-
-#scroll {
-	margin: 5px;
-}
-
-#text {
-	padding: 4px;
-	color: white;
-}
-
-#entry:nth-child(even){
-	background-color: #404552;
+#entry {
+  padding: 8px 14px;
+  margin: 2px 10px;
+  border-radius: 4px;
 }
 
 #entry:selected {
-	background-color: #4C566A;
+  background-color: #31748f;
+  color: #e0def4;
 }
 
-#text:selected {
-	background: transparent;
+#scroll {
+  margin-bottom: 10px;
 }
+

@@ -1,176 +1,97 @@
 * {
-    border: none;
-    font-family: Cousine  Nerd Font;
-    font-size: 14px;
+    font-family: "FiraCode Nerd Font", sans-serif;
+    font-size: 13px;
+    transition: background-color 0.3s ease-out;
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0);
-    transition-property: background-color;
-    transition-duration: .5s;
+    background: rgba(26, 27, 38, 0.1);
+    color: #c0caf5;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
-}
-
-#workspaces {
-    background-color: black;
-    border: 2px solid #65A38F;
+.modules-left,
+.modules-center,
+.modules-right {
+    background: rgba(26, 27, 38, 0.9);
+    margin: 4px 6px;
+    padding: 0 8px;
     border-radius: 10px;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #8a8a8a;
+    background: transparent;
+    font-weight: 500;
+    font-size: 13px;
+    color: #7dcfff;
+    border: none;
+    padding: 0 6px;
+    margin: 2px 3px;
+}
+
+#workspaces button.active {
+    background: rgba(125, 207, 255, 0.2);
+    color: #bb9af7;
 }
 
 #workspaces button:hover {
-    box-shadow: inherit;
-}
-
-#workspaces button.focused {
-    color: #ffffff;
-}
-
-#workspaces button.urgent {
-    background-color: #65A38F; /* green */
-    color: #000000;
-}
-
-#mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+    background: rgba(125, 207, 255, 0.15);
+    color: #bb9af7;
 }
 
 #clock,
 #battery,
 #cpu,
 #memory,
+#disk,
+#temperature,
+#backlight,
 #network,
 #pulseaudio,
+#wireplumber,
 #custom-media,
-#backlight,
-#language,
 #tray,
 #mode,
 #idle_inhibitor,
-#mpd {
+#scratchpad,
+#power-profiles-daemon,
+#language,
+#mpd,
+#custom-power {
     padding: 0 10px;
-    color: #ffffff;
-}
-
-#clock {
     border-radius: 10px;
-    background-color: #65A38F; /* green */
-    color: #000000;
 }
 
-#language {
-    background-color: #65A38F; /* green */
-    color: #000000;
+#clock:hover,
+#battery:hover,
+#cpu:hover,
+#memory:hover,
+#disk:hover,
+#temperature:hover,
+#backlight:hover,
+#network:hover,
+#pulseaudio:hover,
+#wireplumber:hover,
+#custom-media:hover,
+#tray:hover,
+#mode:hover,
+#idle_inhibitor:hover,
+#scratchpad:hover,
+#power-profiles-daemon:hover,
+#language:hover,
+#mpd:hover,
+#custom-power:hover {
+    background: rgba(125, 207, 255, 0.1);
 }
 
-
-#backlight {
-    background-color: #65A38F; /* green */
-    color: #000000;
+#pulseaudio.muted {
+    color: #f7768e;
 }
 
-#battery {
-    background-color: #65A38F; /* green */
-    border-radius: 0 10px 10px 0;
-    color: #000000;
-}
-
-#battery.charging {
-    color: #000000;
-    background-color: #0bda51;
+#battery.charging, #battery.plugged {
+    color: #9ece6a;
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    color: #f7768e; 
 }
 
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-label:focus {
-    background-color: #000000;
-}
-
-#cpu {
-    background-color: #65A38F; /* green */
-    color: #000000;
-}
-
-#memory {
-    background-color: #65A38F; /* green */
-    color: #000000;
-}
-
-#network {
-    background-color: #65A38F; /* green */
-    border-radius: 10px 0 0 10px;
-    color: #000000;
-}
-
-#network.disconnected {
-    background-color: #f53c3c;
-}
-
-#pulseaudio {
-    background-color: #65A38F; /* green */
-    color: #000000;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#tray {
-    background-color: transparent;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
