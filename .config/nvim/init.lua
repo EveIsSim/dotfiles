@@ -1,1 +1,2 @@
 require("eveissim")
+require("lsp")
