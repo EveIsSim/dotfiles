@@ -65,7 +65,6 @@ return require('packer').startup(function(use)
     }
 
     use("vim-test/vim-test") -- run tests
-
     use('nvim-neotest/nvim-nio')
 
     -- debug
@@ -94,4 +93,15 @@ return require('packer').startup(function(use)
     use('tpope/vim-fugitive')
     use('airblade/vim-gitgutter')
     -- #endregion GIT
+
+    --#region Markdown
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install",
+        setup = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
+    })
+    --#endregion
 end)
