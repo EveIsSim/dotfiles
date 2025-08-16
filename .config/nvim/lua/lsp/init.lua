@@ -20,9 +20,18 @@ local function on_attach(client, bufnr)
     vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
     vim.keymap.set("i", "<C-l>", vim.lsp.buf.signature_help, opts)
-    vim.keymap.set("n", "<leader>q", function()
+
+    --#region diagnostic
+    vim.keymap.set("n", "<leader>qf", function()
         vim.diagnostic.setqflist(); vim.cmd("copen")
     end, opts)
+    vim.keymap.set("n", "<leader>q", function()
+        vim.diagnostic.setqflist({ open = false })
+        require("telescope.builtin").diagnostics({
+            severity = { min = vim.diagnostic.severity.WARN },
+        })
+    end)
+    --#endregion
 
     -- format before saving (without locking)
     vim.api.nvim_create_autocmd("BufWritePre", {
