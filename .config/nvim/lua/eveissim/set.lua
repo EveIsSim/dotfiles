@@ -47,7 +47,8 @@ vim.opt.termguicolors = true
 vim.opt.isfname:append("@-@")
 
 
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.linebreak = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
