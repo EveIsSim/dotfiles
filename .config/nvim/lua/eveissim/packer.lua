@@ -17,9 +17,9 @@ return require('packer').startup(function(use)
     use({
         'rose-pine/neovim',
         as = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
+        --config = function()
+        --    vim.cmd('colorscheme rose-pine')
+        --end
     })
     use({
         'catppuccin/nvim',
@@ -31,6 +31,15 @@ return require('packer').startup(function(use)
 
     use "EdenEast/nightfox.nvim"
 
+    use({
+        "vague-theme/vague.nvim",
+        config = function()
+            vim.opt.termguicolors = true
+            vim.opt.background = "dark"
+            vim.cmd.colorscheme("vague")
+        end
+    })
+
     --#endregion Themes
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
@@ -41,21 +50,38 @@ return require('packer').startup(function(use)
     -- Automatically highlighting other uses
     use('RRethy/vim-illuminate')
 
-    -- LSP
+    --#region LSP
     use({ 'VonHeikemen/lsp-zero.nvim', branch = 'v4.x' })
-    use({ 'hrsh7th/nvim-cmp' })
-    use({ 'hrsh7th/cmp-nvim-lsp' })
+
+    --- Autocomplite UI core
+    use({ 'hrsh7th/nvim-cmp' })     -- engine autocomplite
+    use({ 'hrsh7th/cmp-nvim-lsp' }) -- hints from LSP
+
+    --- Snippets
+    use('L3MON4D3/LuaSnip')             -- Snippets
+    use({ 'saadparwaiz1/cmp_luasnip' }) -- source luaSnip snippets (display [SNIP])
+
+    -- Pretty kind icons/labels (Method/Struct/Interface)
+    use({ 'onsails/lspkind.nvim' })
+
+    use({ 'hrsh7th/cmp-buffer' }) -- hits from buffer
+    use({ 'hrsh7th/cmp-path' })   -- hint path files
+
 
     -- Mason + lsp
-    use({ "williamboman/mason.nvim" })
     use({
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
     })
 
-    use('L3MON4D3/LuaSnip')
     use('Hoffs/omnisharp-extended-lsp.nvim')
+
+    -- LSP progres bar
+    use({ "j-hui/fidget.nvim" })
+
+    --#end LSP
+
     use {
         "windwp/nvim-autopairs",
         event = "InsertEnter",

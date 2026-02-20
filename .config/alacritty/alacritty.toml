@@ -1,5 +1,4 @@
-#import = ["~/.config/alacritty/themes/rose-pine.toml"]
-#import = ["~/.config/alacritty/themes/catppuccin-mocha.toml"]
+import = ["~/.config/alacritty/themes/vague.toml"]
 
 general.live_config_reload = true
 
@@ -146,4 +145,4 @@ args = ["-l", "-c", "tmux new -As alacritty"]
 program = "/bin/zsh"
 
 [window]
-opacity = 0.9
+opacity = 0.95

@@ -12,18 +12,6 @@ dap.configurations.go = vim.list_extend(dap.configurations.go or {}, {
         args = {},
     },
 })
---dap.configurations.go = {
---    {
---        type = 'go',
---        name = 'Debug current file (prompt for args)',
---        request = 'launch',
---        program = "${file}",
---        args = function()
---            local input = vim.fn.input("Args: ")
---            return vim.fn.split(input, " +")
---        end,
---    },
---}
 
 -- ##### setup Csharp
 dap.adapters.coreclr = {

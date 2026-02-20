@@ -9,7 +9,7 @@ if vim.treesitter and vim.treesitter.foldexpr then
 end
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "json", "jsonc", "yaml", "javascript", "typescript", "markdown", "go", "csharp", "lua" },
+    pattern = { "json", "jsonc", "yaml", "javascript", "typescript", "markdown", "go", "csharp", "lua", "rust" },
     callback = function()
         vim.opt_local.foldmethod = "expr"
         vim.opt_local.foldexpr = ts_foldexpr

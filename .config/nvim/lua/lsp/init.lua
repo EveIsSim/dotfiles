@@ -44,7 +44,10 @@ end
 
 cmp.setup({
     sources = { { name = 'nvim_lsp' } },
-    window = { documentation = cmp.config.window.bordered() },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
     mapping = cmp.mapping.preset.insert({
         ['<CR>']      = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
@@ -73,7 +76,18 @@ require('lsp.servers.go_ls')(M)
 require('lsp.servers.rust_ls')(M)
 require('lsp.servers.csharp_ls')(M)
 
--- global
-vim.diagnostic.config({ virtual_text = true })
+-- ── Borders for LSP floating windows (hover/signature/diagnostics) ──
+local border = "rounded"
+
+vim.lsp.handlers["textDocument/hover"] =
+    vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+
+vim.lsp.handlers["textDocument/signatureHelp"] =
+    vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
+
+vim.diagnostic.config({
+    virtual_text = true,
+    float = { border = border },
+})
 
 return M
