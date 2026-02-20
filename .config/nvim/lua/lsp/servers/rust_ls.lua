@@ -1,5 +1,5 @@
 return function(common)
-    require('lspconfig').rust_analyzer.setup({
+    vim.lsp.config('rust_analyzer', {
         on_attach = common.on_attach,
         capabilities = common.capabilities,
         settings = {
@@ -9,4 +9,6 @@ return function(common)
             },
         },
     })
+
+    vim.lsp.enable('rust_analyzer')
 end

@@ -1,13 +1,16 @@
 return function(common)
-    local lspconfig = require('lspconfig')
     local util = require('lspconfig.util')
 
-    lspconfig.lua_ls.setup({
+    vim.lsp.config('lua_ls', {
         on_attach = common.on_attach,
         capabilities = common.capabilities,
-        root_dir = function(fname)
-            return util.root_pattern('.luarc.json', '.luarc.jsonc', '.git')(fname) or vim.fn.getcwd()
+
+        root_dir = function(bufnr, on_dir)
+            local fname = vim.api.nvim_buf_get_name(bufnr)
+            local root = util.root_pattern('.luarc.json', '.luarc.jsonc', '.git')(fname)
+            on_dir(root or vim.fn.getcwd())
         end,
+
         settings = {
             Lua = {
                 runtime = { version = 'LuaJIT' },
@@ -20,4 +23,6 @@ return function(common)
             },
         },
     })
+
+    vim.lsp.enable('lua_ls')
 end

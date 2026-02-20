@@ -1,5 +1,5 @@
 return function(common)
-    require('lspconfig').gopls.setup({
+    vim.lsp.config('gopls', {
         on_attach = common.on_attach,
         capabilities = common.capabilities,
         settings = {
@@ -9,4 +9,6 @@ return function(common)
             },
         },
     })
+
+    vim.lsp.enable('gopls')
 end
