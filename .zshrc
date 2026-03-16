@@ -130,3 +130,8 @@ alias myip="curl http://ipecho.net/plain; echo"
 #homeBrew
 # export PATH="/opt/homebrew/opt/node@20/bin:$GOPATH/bin:$PATH"
 # eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# apply custom scripts
+for file in ~/.zshrc.d/*.zsh; do
+  [ -r "$file" ] && source "$file"
+done
