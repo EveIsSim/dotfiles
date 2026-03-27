@@ -1,0 +1,43 @@
+#!/bin/bash
+
+set -e
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+SOURCE_DIR="${REPO_ROOT}/.config/nvim"
+TARGET_DIR="${HOME}/.config/nvim"
+
+echo "Step 1: verify source config exists"
+echo "  Source path: ${SOURCE_DIR}"
+
+echo "Step 2: remove existing target config if it exists"
+if [ -d "${TARGET_DIR}" ]; then
+    echo "    Target exists: ${TARGET_DIR}"
+    read -r -p "    Delete this directory and continue? [y/N] " confirm
+    if [ "${confirm}" != "y" ] && [ "${confirm}" != "Y" ]; then
+        echo "Canceled by user."
+        exit 0
+    fi
+    rm -rf "${TARGET_DIR}"
+    echo "    Target cleared: ${TARGET_DIR}"
+else
+    echo "    Target does not exist: ${TARGET_DIR}"
+fi
+
+echo "Step 3: check if ~/.config exists"
+if [ ! -d "${HOME}/.config" ]; then
+    echo "    Directory missing: ${HOME}/.config"
+    echo "    Create it manually and try again."
+    exit 1
+fi
+echo "    Directory found: ${HOME}/.config"
+
+echo "Step 4: copy Neovim config from repo to local"
+cp -R "${SOURCE_DIR}" "${TARGET_DIR}"
+echo "    Copy complete: ${SOURCE_DIR} -> ${TARGET_DIR}"
+
+echo "Step 5: next actions"
+echo "    1. Open Neovim"
+echo "    2. Install Packer if it is not installed yet"
+echo "       https://github.com/wbthomason/packer.nvim"
+echo "    3. Run :PackerSync"
