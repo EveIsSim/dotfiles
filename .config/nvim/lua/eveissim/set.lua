@@ -75,6 +75,26 @@ vim.api.nvim_command('filetype plugin indent on')
 -- If file was updated by external process. Neovim will update buffer automatically. You need just refresh screen <C-l>
 vim.opt.autoread = true
 
+local autoread_group = vim.api.nvim_create_augroup("eveissim_autoread", { clear = true })
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI", "TermClose", "TermLeave" }, {
+    group = autoread_group,
+    pattern = "*",
+    callback = function()
+        if vim.fn.mode() ~= "c" then
+            vim.cmd("checktime")
+        end
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+    group = autoread_group,
+    pattern = "*",
+    callback = function()
+        vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.INFO)
+    end,
+})
+
 vim.api.nvim_create_user_command("ConvertToUnix", function()
     vim.bo.fileformat = "unix"
     vim.cmd [[ %s/\r//g ]]
