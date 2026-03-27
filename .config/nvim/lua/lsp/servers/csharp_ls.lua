@@ -1,8 +1,22 @@
 return function(common)
     local util = require('lspconfig.util')
+    local function on_attach(client, bufnr)
+        common.on_attach(client, bufnr)
+
+        local opts = { buffer = bufnr, noremap = true, silent = true }
+        vim.keymap.set("n", "gd", function()
+            local ok, ext = pcall(require, 'omnisharp_extended')
+            if ok then
+                ext.lsp_definition()
+                return
+            end
+
+            vim.lsp.buf.definition()
+        end, opts)
+    end
 
     vim.lsp.config('omnisharp', {
-        on_attach = common.on_attach,
+        on_attach = on_attach,
         capabilities = common.capabilities,
         cmd = {
             "dotnet",
