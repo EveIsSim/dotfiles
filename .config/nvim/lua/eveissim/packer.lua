@@ -12,7 +12,7 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    --#region Themes
+    -- Themes
 
     use({
         'rose-pine/neovim',
@@ -40,24 +40,26 @@ return require('packer').startup(function(use)
         end
     })
 
-    --#endregion Themes
+    -- Navigation and editing
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/playground')
     use('theprimeagen/harpoon')
     use('mbbill/undotree')
+    use('nvim-tree/nvim-web-devicons')
+    use('nvim-tree/nvim-tree.lua')
 
     -- Automatically highlighting other uses
     use('RRethy/vim-illuminate')
 
-    --#region LSP
+    -- LSP and completion
     use({ 'VonHeikemen/lsp-zero.nvim', branch = 'v4.x' })
 
-    --- Autocomplite UI core
+    -- Autocomplete UI core
     use({ 'hrsh7th/nvim-cmp' })     -- engine autocomplite
     use({ 'hrsh7th/cmp-nvim-lsp' }) -- hints from LSP
 
-    --- Snippets
+    -- Snippets
     use('L3MON4D3/LuaSnip')             -- Snippets
     use({ 'saadparwaiz1/cmp_luasnip' }) -- source luaSnip snippets (display [SNIP])
 
@@ -66,7 +68,6 @@ return require('packer').startup(function(use)
 
     use({ 'hrsh7th/cmp-buffer' }) -- hits from buffer
     use({ 'hrsh7th/cmp-path' })   -- hint path files
-
 
     -- Mason + lsp
     use({
@@ -80,8 +81,7 @@ return require('packer').startup(function(use)
     -- LSP progres bar
     use({ "j-hui/fidget.nvim" })
 
-    --#end LSP
-
+    -- Editing helpers
     use {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
@@ -107,7 +107,7 @@ return require('packer').startup(function(use)
     -- colorizer
     use("norcalli/nvim-colorizer.lua") -- run tests
 
-    -- #region GIT
+    -- Git
     use {
         'lewis6991/gitsigns.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
@@ -118,9 +118,8 @@ return require('packer').startup(function(use)
 
     use('tpope/vim-fugitive')
     use('airblade/vim-gitgutter')
-    -- #endregion GIT
 
-    --#region Markdown
+    -- Markdown
     use({
         "iamcco/markdown-preview.nvim",
         run = "cd app && npm install",
@@ -129,5 +128,4 @@ return require('packer').startup(function(use)
         end,
         ft = { "markdown" },
     })
-    --#endregion
 end)
