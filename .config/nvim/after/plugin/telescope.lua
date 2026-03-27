@@ -15,9 +15,16 @@ if not ok then
 end
 
 local actions = require('telescope.actions')
+local telescope_config = require('telescope.config')
+local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
+
+table.insert(vimgrep_arguments, '--hidden')
+table.insert(vimgrep_arguments, '--glob')
+table.insert(vimgrep_arguments, '!.git/*')
 
 telescope.setup({
     defaults = {
+        vimgrep_arguments = vimgrep_arguments,
         mappings = {
             i = {
                 ["<C-u>"]             = actions.preview_scrolling_up,
@@ -35,6 +42,9 @@ telescope.setup({
         },
     },
     pickers = {
+        find_files = {
+            hidden = true,
+        },
         lsp_references = {
             show_line        = true,
             fname_width      = 80,
