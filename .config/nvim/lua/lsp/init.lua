@@ -4,6 +4,17 @@ local lsp_zero = require('lsp-zero')
 local cmp = require('cmp')
 local cmp_action = lsp_zero.cmp_action()
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local original_make_position_params = vim.lsp.util.make_position_params
+
+vim.lsp.util.make_position_params = function(window, position_encoding)
+    if not position_encoding then
+        local bufnr = vim.api.nvim_win_get_buf(window or 0)
+        local client = vim.lsp.get_clients({ bufnr = bufnr })[1]
+        position_encoding = client and client.offset_encoding or "utf-16"
+    end
+
+    return original_make_position_params(window, position_encoding)
+end
 
 local function on_attach(client, bufnr)
     lsp_zero.default_keymaps({ buffer = bufnr })
@@ -26,11 +37,10 @@ local function on_attach(client, bufnr)
         vim.diagnostic.setqflist(); vim.cmd("copen")
     end, opts)
     vim.keymap.set("n", "<leader>q", function()
-        vim.diagnostic.setqflist({ open = false })
         require("telescope.builtin").diagnostics({
             severity = { min = vim.diagnostic.severity.WARN },
         })
-    end)
+    end, opts)
     --#endregion
 
     -- format before saving (without locking)
@@ -66,7 +76,7 @@ local M = {
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'lua_ls', 'gopls', 'rust_analyzer', 'omnisharp' },
+    ensure_installed = { 'lua_ls', 'gopls', 'rust_analyzer' },
     automatic_enable = false,
 })
 
